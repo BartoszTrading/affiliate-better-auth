@@ -6,6 +6,7 @@
     "module": "esnext",
     "rootDir": "./src",
     "noEmit": true,
+    "moduleResolution":"bundler",
     "declaration": true,
     "strict": true,
     "esModuleInterop": true,
