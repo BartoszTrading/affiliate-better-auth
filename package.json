@@ -16,6 +16,7 @@
     "dev": "tsup --watch",
     "release": "pnpm run lint && pnpm run build && changeset publish",
     "quality": "biome check .",
+	"lint": "tsc",
     "quality-fix": "biome check . --write --unsafe"
   },
   "repository": {
@@ -36,6 +37,7 @@
     "@biomejs/biome": "2.2.4",
     "@types/node": "^24.5.2",
     "tsup": "^8.5.0",
+	
     "typescript": "^5.9.2",
     "zod": "^4.1.11"
   },

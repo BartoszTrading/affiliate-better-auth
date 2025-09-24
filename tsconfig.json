@@ -1,27 +1,14 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "rootDir": "./src",
+    "target": "ES2020",
     "outDir": "./dist",
-
-    "module": "esnext",
-    "target": "esnext",
-    "lib": ["esnext"],
-    "types": ["node"],
-
-    "sourceMap": true,
+    "module": "CommonJS",
+    "rootDir": "./src",
+    "noEmit": true,
     "declaration": true,
-    "declarationMap": true,
-    "moduleResolution": "bundler",
-
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-
     "strict": true,
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    "esModuleInterop": true,
     "skipLibCheck": true
   },
   "include": ["src/**/*"],
