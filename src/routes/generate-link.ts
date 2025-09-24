@@ -3,9 +3,35 @@ import { generateRandomCode } from "../affiliate";
 
 export function generateLinkRoute() {
   return createAuthEndpoint(
-    "affiliate/generate-link",
+    "/affiliate/generate-link",
     {
       method: "GET",
+      metadata: {
+        openapi: {
+          summary: "Generate affiliate link",
+          description:
+            "Returns an existing or newly generated affiliate code for the authenticated user.",
+          responses: {
+            200: {
+              description: "Success",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      link: {
+                        type: "string",
+                        description: "Affiliate code for the current user",
+                      },
+                    },
+                    required: ["link"],
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     async (ctx) => {
       const session = await getSessionFromCtx(ctx);

@@ -4,12 +4,38 @@ import { AFFILIATE_COOKIE_NAME } from "../affiliate";
 
 export function issueCookieRoute() {
   return createEndpoint(
-    "affiliate/issue-cookie",
+    "/affiliate/issue-cookie",
     {
       method: "POST",
       body: zod.object({
         code: zod.string(),
       }),
+      metadata: {
+        openapi: {
+          summary: "Issue affiliate cookie",
+          description:
+            "Sets an 'affiliate' cookie containing the provided referral code.",
+          responses: {
+            200: {
+              description: "Success",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      message: {
+                        type: "string",
+                        description: "Status message",
+                      },
+                    },
+                    required: ["message"],
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     },
     async (ctx) => {
       const { code } = ctx.body;
