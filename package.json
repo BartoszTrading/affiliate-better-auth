@@ -2,6 +2,7 @@
   "name": "affiliate-better-auth",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
+  "version": "0.0.1",
   "types": "./dist/index.d.ts",
   "author": "Bartosz Marek",
   "exports": {
