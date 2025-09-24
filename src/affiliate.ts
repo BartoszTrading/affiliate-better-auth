@@ -26,8 +26,8 @@ export function generateRandomCode() {
 
 export const affiliatePlugin = () => {
   const cookieGetter = (ctx: any) => {
-    if (ctx.cookies.get(AFFILIATE_COOKIE_NAME)) {
-      return ctx.cookies.get(AFFILIATE_COOKIE_NAME);
+    if (ctx.getCookie(AFFILIATE_COOKIE_NAME)) {
+      return ctx.getCookie(AFFILIATE_COOKIE_NAME);
     }
     return null;
   };
