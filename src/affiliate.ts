@@ -67,7 +67,7 @@ export const affiliatePlugin = () => {
         {
           matcher: (ctx) => true,
           handler: createAuthMiddleware(async (ctx) => {
-            const setCookie = ctx.request?.headers.get("set-cookie");
+            const setCookie = ctx.request?.headers.get("cookie");
             console.log("setCookie", setCookie);
             if (setCookie) {
               const parsed = parseSetCookieHeader(setCookie);
