@@ -46,7 +46,7 @@ export const affiliatePlugin = () => {
                 async after(user, ctx) {
                   console.log({user})
                   if (!ctx){
-                    return user
+                    return 
                   }
                   const cookie = parseSetCookieHeader(ctx?.request?.headers.get("cookie") || "");
                   console.log("cookie", cookie);
