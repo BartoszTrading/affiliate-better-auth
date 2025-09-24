@@ -44,6 +44,10 @@ export const affiliatePlugin = () => {
             user: {
               create: {
                 async after(user, ctx) {
+                  console.log({user})
+                  const cookie = parseSetCookieHeader(ctx?.request?.headers.get("cookie") || "");
+                  console.log("cookie", cookie);
+                  console.log("ctx.context.refferedBy", ctx?.context.refferedBy);
                   if (ctx?.context.refferedBy) {
                     await ctx.context.adapter.create({
                       model: AFFILIATE_TABLE_NAME,
@@ -75,7 +79,7 @@ export const affiliatePlugin = () => {
               const outKookie = parsed.get(AFFILIATE_COOKIE_NAME);
               console.log("outKookie", outKookie);
               if (outKookie) {
-                ctx.context.refferedBy = outKookie;
+                ctx.context.refferedBy = outKookie.value;
               }
             
             }
