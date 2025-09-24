@@ -1,0 +1,34 @@
+{
+	"name": "affiliate-better-auth",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"require": "./dist/index.cjs",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"quality": "biome check .",
+		"quality-fix": "biome check . --write --unsafe"
+
+	},
+	"files": [
+		"dist"
+	],
+	"devDependencies": {
+		"@better-auth/utils": "^0.3.0",
+		"@biomejs/biome": "2.2.4",
+		"@types/node": "^24.5.2",
+		"tsup": "^8.5.0",
+		"typescript": "^5.9.2",
+		"zod": "^4.1.11"
+	},
+	"peerDependencies": {
+		"better-auth": "^1.3.0"
+	}
+}
