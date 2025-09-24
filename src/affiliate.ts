@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import type { BetterAuthPlugin } from "better-auth";
 import { createAuthMiddleware } from "better-auth/api";
 import { createRoutes } from "./routes";
+import { parseSetCookieHeader } from "better-auth/cookies";
 
 const CODE_LENGTH = 6;
 export const AFFILIATE_COOKIE_NAME = "affiliate";
@@ -64,11 +65,19 @@ export const affiliatePlugin = () => {
     hooks: {
       before: [
         {
-          matcher: (ctx) => !!cookieGetter(ctx),
+          matcher: (ctx) => true,
           handler: createAuthMiddleware(async (ctx) => {
-            const cookie = cookieGetter(ctx);
-            if (cookie) {
-              ctx.context.refferedBy = cookie;
+            const setCookie = ctx.request?.headers.get("set-cookie");
+            console.log("setCookie", setCookie);
+            if (setCookie) {
+              const parsed = parseSetCookieHeader(setCookie);
+              console.log("parsed", parsed);
+              const outKookie = parsed.get(AFFILIATE_COOKIE_NAME);
+              console.log("outKookie", outKookie);
+              if (outKookie) {
+                ctx.context.refferedBy = outKookie;
+              }
+            
             }
           }),
         },
