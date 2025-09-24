@@ -41,7 +41,7 @@ export function issueCookieRoute() {
       const { code } = ctx.body;
 
       ctx.setCookie(AFFILIATE_COOKIE_NAME, code, {
-        maxAge: 60 * 1000 * 60 * 24 * 30 * 12,
+        maxAge: 60  * 60 * 24 * 30 * 12,
       });
       return { message: "Cookie issued successfully" };
     },
