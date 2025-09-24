@@ -45,15 +45,29 @@ export const affiliatePlugin = () => {
               create: {
                 async after(user, ctx) {
                   console.log({user})
+                  if (!ctx){
+                    return user
+                  }
                   const cookie = parseSetCookieHeader(ctx?.request?.headers.get("cookie") || "");
                   console.log("cookie", cookie);
                   console.log("ctx.context.refferedBy", ctx?.context.refferedBy);
-                  if (ctx?.context.refferedBy) {
+                  const code_owner = await ctx.context.adapter.findOne<{
+                    id: string;
+                  }>({
+                    model: AFFILIATE_CODE_TABLE_NAME,
+                    where: [{
+                      field: "code",
+                      value: ctx?.context.refferedBy,
+                      operator: "eq",
+                    }],
+                  });
+                  console.log("code_owner", code_owner);
+                  if (code_owner && ctx) {
                     await ctx.context.adapter.create({
                       model: AFFILIATE_TABLE_NAME,
                       data: {
-                        owner_id: user.id,
-                        invited_id: ctx.context.refferedBy,
+                        owner_id: code_owner.id,
+                        invited_id: user.id,
                         created_at: new Date(),
                         updated_at: new Date(),
                       },
