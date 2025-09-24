@@ -1,9 +1,9 @@
-import { createEndpoint } from "better-auth";
+import { createAuthEndpoint } from "better-auth/api";
 import * as zod from "zod";
 import { AFFILIATE_COOKIE_NAME } from "../affiliate";
 
 export function issueCookieRoute() {
-  return createEndpoint(
+  return createAuthEndpoint(
     "/affiliate/issue-cookie",
     {
       method: "POST",
