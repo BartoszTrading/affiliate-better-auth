@@ -33,6 +33,10 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+	"registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "devDependencies": {
     "@better-auth/utils": "^0.3.0",
     "@biomejs/biome": "2.2.4",
