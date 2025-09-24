@@ -9,4 +9,9 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   target: "esnext",
+  outExtension({ format }) {
+    return {
+      js: format === "esm" ? ".mjs" : ".cjs",
+    };
+  },
 });
