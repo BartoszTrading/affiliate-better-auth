@@ -53,6 +53,7 @@ export const affiliatePlugin = () => {
                   console.log("ctx.context.refferedBy", ctx?.context.refferedBy);
                   const code_owner = await ctx.context.adapter.findOne<{
                     id: string;
+                    user_id: string;
                   }>({
                     model: AFFILIATE_CODE_TABLE_NAME,
                     where: [{
@@ -66,7 +67,7 @@ export const affiliatePlugin = () => {
                     await ctx.context.adapter.create({
                       model: AFFILIATE_TABLE_NAME,
                       data: {
-                        owner_id: code_owner.id,
+                        owner_id: code_owner.user_id,
                         invited_id: user.id,
                         created_at: new Date(),
                         updated_at: new Date(),
